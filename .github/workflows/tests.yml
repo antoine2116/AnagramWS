@@ -23,7 +23,7 @@ jobs:
         run: dotnet build --no-restore --verbosity normal
 
       - name: Run tests
-        run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        run: dotnet test --no-build --verbosity normal /--collect:"XPlat Code Coverage"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
