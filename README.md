@@ -1,5 +1,5 @@
 ![tests](https://github.com/antoine2116/AnagramWS/actions/workflows/tests.yml/badge.svg)
-[![codecov](https://codecov.io/gh/antoine2116/AnagramWS/graph/badge.svg?token=E35WE8EF7Y)](https://codecov.io/gh/antoine2116/go-choruspro)
+[![codecov](https://codecov.io/gh/antoine2116/AnagramWS/graph/badge.svg?token=E35WE8EF7Y)](https://codecov.io/gh/antoine2116/AnagramWS)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Simple Anagram API
