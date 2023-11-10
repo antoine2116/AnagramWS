@@ -11,10 +11,18 @@ This project requires .NET 6.0 and Docker to run.
 
 ### Running the API
 
-To run the API, run the following command in the root directory of the project:
+To run the API, run the following commands in the root directory of the project:
 
+- Build the API:
+
+```sh
+docker build -t anagram-ws:lastest .
 ```
-docker-compose up
+
+- Run the API:
+
+```sh
+docker run -d -p 5000:5000 --name anagram-ws anagram-ws:latest
 ```
 
 This will build the API and run it in a Docker container. The API will be
@@ -47,7 +55,6 @@ Provide the word to find anagrams of in the URL.
 ```
 /anagram/find/chien
 ```
-
 #### Success Response
 
 **Code** : `200 OK`
@@ -60,21 +67,11 @@ Provide the word to find anagrams of in the URL.
     "niche"
 ]
 ```
-
 #### Error Response
 
 ** Condition** : If an error occurs.
 
 **Code** : `500 Internal Server Error`
-
-**Content example**
-
-```json
-{
-    "message": "An error occurred while finding the anagrams."
-}
-```
-
 
 ### Add
 
@@ -101,7 +98,6 @@ Provide the word to add in the request body.
     "word": "chien"
 }
 ```
-
 #### Success Response
 
 **Code** : `201 Created`
@@ -113,44 +109,19 @@ Provide the word to add in the request body.
     "message": "The word 'chien' was added to the dictionary."
 }
 ```
-
 #### Error Response
 
 **Condition** : If the word is already in the dictionary.
 
 **Code** : `400 Bad Request`
 
-**Content example**
-
-```json
-{
-    "message": "The word 'chien' is already in the dictionary."
-}
-```
-
 **Condition** : If the word is empty or missing
 
 **Code** : `400 Bad Request`
 
-**Content example**
-
-```json
-{
-    "message": "The word cannot be empty."
-}
-```
-
 **Condition** : If an error occurs.
 
 **Code** : `500 Internal Server Error`
-
-**Content example**
-
-```json
-{
-    "message": "An error occurred while adding the word."
-}
-```
 
 ### Remove
 
@@ -196,37 +167,13 @@ Provide the word to remove in the request body.
 
 **Code** : `400 Bad Request`
 
-**Content example**
-
-```json
-{
-    "message": "The word 'chien' is not in the dictionary."
-}
-```
-
 **Condition** : If the word is empty or missing
 
 **Code** : `400 Bad Request`
 
-**Content example**
-
-```json
-{
-    "message": "The word cannot be empty."
-}
-```
-
 **Condition** : If an error occurs.
 
 **Code** : `500 Internal Server Error`
-
-**Content example**
-
-```json
-{
-    "message": "An error occurred while removing the word."
-}
-```
 
 ### Count
 Count the number of words in the dictionary that have anagrams.
@@ -256,14 +203,6 @@ None
 **Condition** : If an error occurs.
 
 **Code** : `500 Internal Server Error`
-
-**Content example**
-
-```json
-{
-    "message": "An error occurred while counting the anagrams."
-}
-```
 
 ## License
 
