@@ -24,13 +24,13 @@ public class AnagramController : ControllerBase
     [HttpGet("{word}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<string>>> Find(string word)
+    public ActionResult<IEnumerable<string>> Find(string word)
     {
         try
         {
             return Ok(_wordRepository.FindAnagrams(word));
         }
-        catch (Exception ex)
+        catch
         {
             return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while finding the anagrams."});
         }
@@ -39,12 +39,12 @@ public class AnagramController : ControllerBase
     /// <summary>
     /// Adds a word to the dictionary.
     /// </summary>
-    /// <param name="word">Word to add</param>
+    /// <param name="wordDTO">Word to add</param>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<string>> Add(WordDTO wordDTO)
+    public ActionResult<string> Add(WordDTO wordDTO)
     {
         try
         {
@@ -60,7 +60,7 @@ public class AnagramController : ControllerBase
         {
             return BadRequest(new { Message = ex.Message });
         }
-        catch (Exception ex)
+        catch
         {
             return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while adding the word." });
         }
@@ -69,12 +69,12 @@ public class AnagramController : ControllerBase
     /// <summary>
     /// Removes a word from the dictionary.
     /// </summary>
-    /// <param name="word">Word to remove</param>
+    /// <param name="wordDTO">Word to remove</param>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<string>> Remove(WordDTO wordDTO)
+    public ActionResult<string> Remove(WordDTO wordDTO)
     {
         try
         {
@@ -90,7 +90,7 @@ public class AnagramController : ControllerBase
         {
             return BadRequest(new { Message = ex.Message });
         }
-        catch (Exception ex)
+        catch
         {
             return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while removing the word." });
         }
@@ -102,13 +102,13 @@ public class AnagramController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<int>> Count()
+    public ActionResult<int> Count()
     {
         try
         {
             return Ok(new { Message = _wordRepository.CountWordsWithAnagrams() });
         }
-        catch (Exception ex)
+        catch
         {
             return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while counting the anagrams." });
         }

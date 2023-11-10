@@ -2,5 +2,5 @@
 
 public class WordDTO
 {
-    public string Word { get; set; }
+    public string Word { get; set; } = string.Empty;
 }

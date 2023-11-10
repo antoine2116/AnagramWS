@@ -5,7 +5,7 @@ namespace AnagramWS.Repositories;
 
 public class WordRepository : IWordRepository
 {
-    private Dictionary<string, List<string>> _wordsDictionary;
+    private Dictionary<string, List<string>> _wordsDictionary = new();
 
     /// <summary>
     /// Creates a new instance of the WordRepository class.
