@@ -110,7 +110,7 @@ public class AnagramController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while counting the words." });
+            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while counting the anagrams." });
         }
     }
 }
