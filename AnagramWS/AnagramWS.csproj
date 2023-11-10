@@ -18,4 +18,11 @@
     <PropertyGroup>
         <NoWarn>1591</NoWarn>
     </PropertyGroup>
+
+    <!-- Include the Data/ folder in the output directory -->
+    <ItemGroup>
+        <None Update="Data\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

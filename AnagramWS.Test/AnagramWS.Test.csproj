@@ -26,8 +26,8 @@
     <ItemGroup>
       <ProjectReference Include="..\AnagramWS\AnagramWS.csproj" />
     </ItemGroup>
-    
-    <!-- Include the Data/ folder in the test project -->
+
+    <!-- Include the Data/ folder in the output directory -->
     <ItemGroup>
         <None Update="Data\**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

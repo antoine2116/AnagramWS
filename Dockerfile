@@ -5,14 +5,14 @@ WORKDIR /AnagramWS
 # Copy everything
 COPY . ./
 # Restore as distinct layers
-RUN dotnet restore
+RUN dotnet restore AnagramWS
 # Build and publish a release
-RUN dotnet publish -c Release -o out
+RUN dotnet publish AnagramWS  -c Release -o out
 
-# Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /AnagramWS
 COPY --from=build-env /AnagramWS/out .
 
+EXPOSE 5000
 ENV ASPNETCORE_URLS=http://+:5000
 CMD ["dotnet", "AnagramWS.dll"]
