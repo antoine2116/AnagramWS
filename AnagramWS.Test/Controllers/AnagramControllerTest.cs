@@ -16,7 +16,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.FindAnagrams("chien")).Returns(new string[] {"niche", "chine"});
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Find("chien").Result;
+        var result = controller.Find("chien");
         
         var actionResult = Assert.IsType<ActionResult<IEnumerable<string>>>(result);
         var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
@@ -31,7 +31,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.FindAnagrams("chien")).Throws(new Exception());
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Find("chien").Result;
+        var result = controller.Find("chien");
         
         var actionResult = Assert.IsType<ActionResult<IEnumerable<string>>>(result);
         var statusCodeResult = Assert.IsType<ObjectResult>(actionResult.Result);
@@ -45,7 +45,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Add("chien"));
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Add(new WordDTO{ Word = "chien" }).Result;
+        var result = controller.Add(new WordDTO{ Word = "chien" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var createdResult = Assert.IsType<ObjectResult>(actionResult.Result);
@@ -59,7 +59,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Add("chien")).Throws(new WordAlreadyExistsException("chien"));
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Add(new WordDTO{ Word = "" }).Result;
+        var result = controller.Add(new WordDTO{ Word = "" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(actionResult.Result);
@@ -73,7 +73,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Add("chien")).Throws(new WordAlreadyExistsException("chien"));
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Add(new WordDTO{ Word = "chien" }).Result;
+        var result = controller.Add(new WordDTO{ Word = "chien" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(actionResult.Result);
@@ -87,7 +87,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Add("chien")).Throws(new Exception());
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Add(new WordDTO{ Word = "chien" }).Result;
+        var result = controller.Add(new WordDTO{ Word = "chien" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var statusCodeResult = Assert.IsType<ObjectResult>(actionResult.Result);
@@ -101,7 +101,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Remove("chien"));
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Remove(new WordDTO{ Word = "chien" }).Result;
+        var result = controller.Remove(new WordDTO{ Word = "chien" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
@@ -115,7 +115,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Remove("chien")).Throws(new WordNotFoundException("chien"));
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Remove(new WordDTO{ Word = "" }).Result;
+        var result = controller.Remove(new WordDTO{ Word = "" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(actionResult.Result);
@@ -129,7 +129,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Remove("chien")).Throws(new WordNotFoundException("chien"));
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Remove(new WordDTO{ Word = "chien" }).Result;
+        var result = controller.Remove(new WordDTO{ Word = "chien" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(actionResult.Result);
@@ -143,7 +143,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.Remove("chien")).Throws(new Exception());
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Remove(new WordDTO{ Word = "chien" }).Result;
+        var result = controller.Remove(new WordDTO{ Word = "chien" });
         
         var actionResult = Assert.IsType<ActionResult<string>>(result);
         var statusCodeResult = Assert.IsType<ObjectResult>(actionResult.Result);
@@ -157,7 +157,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.CountWordsWithAnagrams()).Returns(1);
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Count().Result;
+        var result = controller.Count();
         
         var actionResult = Assert.IsType<ActionResult<int>>(result);
         var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
@@ -171,7 +171,7 @@ public class AnagramControllerTest
         repository.Setup(r => r.CountWordsWithAnagrams()).Throws(new Exception());
         var controller = new AnagramController(repository.Object);
         
-        var result = controller.Count().Result;
+        var result = controller.Count();
         
         var actionResult = Assert.IsType<ActionResult<int>>(result);
         var statusCodeResult = Assert.IsType<ObjectResult>(actionResult.Result);
