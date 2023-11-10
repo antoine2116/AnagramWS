@@ -1,0 +1,29 @@
+﻿name: 'Tests'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - uses: actions/checkout@v4
+
+      - name: Restore nuget packages
+        run: dotnet restore
+        
+      - name: Build
+        run: dotnet build --no-restore --verbosity normal
+
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
